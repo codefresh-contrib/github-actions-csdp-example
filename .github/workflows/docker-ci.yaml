@@ -97,7 +97,7 @@ jobs:
         run: node /app/src/index.js
         working-directory: /app/
         env:
-          IMAGE_SHA: docker.io/${{ github.repository }}:${{ github.sha }}
+          IMAGE_SHA: docker.io/salesdemocf/simple-docker-project:${{ github.sha }}
           CF_API_KEY: ${{ secrets.CF_PLATFORM_KEY }}
           GITHUB_TOKEN: ${{ github.token }}
           BRANCH: ${{ github.head_ref }}
