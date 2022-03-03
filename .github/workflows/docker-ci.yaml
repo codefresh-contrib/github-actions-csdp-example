@@ -78,7 +78,7 @@ jobs:
           CF_API_KEY: ${{ secrets.CF_PLATFORM_KEY }}
           JIRA_PROJECT_PREFIX: PS
           JIRA_HOST: codefresh-io.atlassian.net
-          JIRA_EMAIL: dustinvanbuskirk
+          JIRA_EMAIL: dustin@codefresh.io
           JIRA_API_TOKEN: ${{ secrets.jira_api_token }}
 
   csdp-image-enricher-github-info:
