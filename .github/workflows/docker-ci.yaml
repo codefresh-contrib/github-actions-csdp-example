@@ -1,6 +1,6 @@
 name: Docker Image CI
 
-on: [ push, pull_request ]
+on: [ pull_request ]
 
 jobs:
 
@@ -11,12 +11,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag simple-docker-project:${{ github.sha }}
+      run: docker build . --file Dockerfile --tag salesdemocf/simple-docker-project:${{ github.sha }}
 
     - name: Push To Registry
       uses: redhat-actions/push-to-registry@v2.5.1
       with:
-        image: simple-docker-project
+        image: salesdemocf/simple-docker-project
         tags: ${{ github.sha }}
         registry: docker.io
         username: salesdemocf
@@ -42,7 +42,7 @@ jobs:
           node /usr/src/app/index.js
         working-directory: /usr/src/app
         env:
-          IMAGE_URI: docker.io/${{ github.repository }}:${{ github.sha }}
+          IMAGE_URI: docker.io/salesdemocf/simple-docker-project:${{ github.sha }}
           CF_API_KEY: ${{ secrets.CF_RUNTIME_KEY }}
           GIT_BRANCH: ${{ github.ref_name }}
           GIT_REVISION: ${{ github.sha }}
@@ -76,11 +76,11 @@ jobs:
           node /app/src/index.js
         working-directory: /app/
         env:
-          IMAGE: docker.io/${{ github.repository }}:${{ github.sha }}
+          IMAGE: docker.io/salesdemocf/simple-docker-project:${{ github.sha }}
           CF_API_KEY: ${{ secrets.CF_PLATFORM_KEY }}
-          JIRA_PROJECT_PREFIX: SA
+          JIRA_PROJECT_PREFIX: PS
           JIRA_HOST: codefresh-io.atlassian.net
-          JIRA_EMAIL: dustinvanbuskirk
+          JIRA_EMAIL: dustin@codefresh.io
           JIRA_API_TOKEN: ${{ secrets.jira_api_token }}
 
   csdp-image-enricher-github-info:
@@ -99,7 +99,7 @@ jobs:
         run: node /app/src/index.js
         working-directory: /app/
         env:
-          IMAGE_SHA: docker.io/${{ github.repository }}:${{ github.sha }}
+          IMAGE_SHA: docker.io/salesdemocf/simple-docker-project:${{ github.sha }}
           CF_API_KEY: ${{ secrets.CF_PLATFORM_KEY }}
           GITHUB_TOKEN: ${{ github.token }}
           BRANCH: ${{ github.head_ref }}
