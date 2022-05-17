@@ -1,3 +1,3 @@
 FROM alpine
 
-LABEL csdp-account=csdp-demo
+LABEL csdp-account=csdp-demo-PS-45
